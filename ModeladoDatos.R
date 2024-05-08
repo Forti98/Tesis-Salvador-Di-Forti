@@ -172,7 +172,7 @@ tune_RF_results %>%
 
 show_best(tune_RF_results, metric = "rmse", n = 1) # Mostrar el mejor modelo según RMSE
 
-tuned_RF_values <- select_best(tune_RF_results, "rmse") # Seleccionar los mejores hiperparámetros
+tuned_RF_values <- select_best(tune_RF_results, metric = "rmse") # Seleccionar los mejores hiperparámetros
 tuned_RF_values
 
 RF_tuned_wflow <- RF_tune_wflow %>%
