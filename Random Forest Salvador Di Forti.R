@@ -4,7 +4,7 @@
 pacman::p_load(readxl, janitor, dplyr, skimr, corrplot, tidymodels, magrittr, vip, ggplot2, randomForest,stringr,parallel,openxlsx)
 
 # Importar y limpiar datos
-data <- read_excel("data.xlsx", sheet = "Prueba") %>%
+data <- read_excel("data.xlsx", sheet = "data") %>%
   clean_names() %>%
   mutate(
     conf = case_when(
@@ -16,8 +16,8 @@ data <- read_excel("data.xlsx", sheet = "Prueba") %>%
     type_player = case_when(
       pos %in% c("PG","SG","SF") ~ "EXT", TRUE ~ "INT"
     )) %>% 
-  select(c(-player, -tm, -pos, -g)) # Eliminar columnas innecesarias
-
+  select(c(-player, -tm, -pos, -g)) %>% # Eliminar columnas innecesarias 
+  filter(salary <= 40)
 
 ggplot() +
   geom_density(aes(data$salary))
@@ -200,6 +200,12 @@ ggplot() +
                          "MAE:", mae, "\n",
                          "R²:", rsq), 
            hjust = 1, color = "black", size = 4)  # Aumenta el tamaño del texto
+
+
+
+
+
+
 
 
 
